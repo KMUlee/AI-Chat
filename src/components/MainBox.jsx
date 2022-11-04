@@ -50,6 +50,7 @@ export default function MainBox() {
           </div>
           <h1
             style={{
+              fontFamily: "Montserrat",
               fontStyle: "normal",
               fontWeight: "400",
               fontSize: "16px",
@@ -57,7 +58,7 @@ export default function MainBox() {
               color: "#333333",
               padding: "0 0",
               margin: "0 0",
-              marginBottom: "4px",
+              marginBottom: "2px",
             }}
           >
             Clear Conversation

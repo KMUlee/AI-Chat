@@ -62,10 +62,10 @@ const StyledPositiveButton = styled.div`
 `;
 
 const StyledButtonText = styled.h6`
-  font-family: "Montserrat Medium";
+  font-family: "Montserrat";
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 30px;
   margin: 0 0;
 `;
@@ -100,6 +100,7 @@ export default function Modal({ visible, setVisible, setChatData }) {
                 alignContent: "center",
                 position: "absolute",
                 bottom: "29px",
+                marginLeft: "5px",
               }}
             >
               <StyledNegativeButton onClick={handleOnClick}>

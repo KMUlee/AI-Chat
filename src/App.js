@@ -4,11 +4,11 @@ import MainBox from "./components/MainBox";
 
 function App() {
   return (
-    <div className="relative">
+    <div>
       <header>
         <AppBar />
       </header>
-      <main className="relative">
+      <main>
         <MainBox />
       </main>
     </div>
