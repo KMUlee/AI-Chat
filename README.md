@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# AI chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## For internship
 
-## Available Scripts
+이번 국민대학교에서 실시한 동계 인턴에 참여했고, 그 중 커먼 컴퓨터에서 실시한 과제에 대한 결과물이다.
 
-In the project directory, you can run:
+## How to run
 
-### `npm start`
+- git clone https://github.com/KMUlee/AI-Chat.git
+- npm install
+- npm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React를 사용해서 구현하라
+- 디자인에 나와있는 내용대로 스타일링을 작업해라
+- 서버여 연결하여 채팅을 보내면 API를 호출하여 Response를 받아올 수 있게 구현하라
+- 받아온 Response를 채팅창에 나타날 수 있게 구현하라
+- Clear Conversation 버튼을 누루면 Modal창을 띄워라
+- 채팅창 초기화 기능을 구현하라
+- 이외에 UI, UX 적으로 추가로 개선 가능하며, 추가 작업한 부분과 그에 대한 추가 이유 및 어떤식으로 개선하였는지 기술하라
 
-### `npm test`
+## Implementation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Chatting
 
-### `npm run build`
+- 원할한 가독성을 위하여 모든 메시지의 최대 너비를 고정했으며, overflow 시 다음 줄로 넘어가도록 함
+- 기본 채팅창 처럼 메시지가 채팅창 영역을 벗어나는 경우 스크롤 가능하도록 함
+- 채팅 메시지가 계속 쌓이면 그에 맞춰서 스크롤 하는 게 불편하다, 따라서 채팅 시 마지막 메시지로 스크롤이 이동하도록 만듦
+- 채팅 하는 곳인지 식별할 수 있도록 placeholder에 적절한 메시지를 넣음
+- 채팅을 하나 보내면 그 채팅에 대한 AI 대답이 느리게 도착하며, 그 와중에 메시지를 추가로 입력하는 경우 처리하는 과정에서 버그가 발생 -> 메시지를 하나 보냈으면 다음 대답까지 메시지 작성기능을 막아놓음
+- 메시지로 빈 문자열을 보내는 경우는 쓸모 없는 메시지라고 생각하여 trim()을 사용하여 빈 문자열인지 판단 후, 빈 문자열이면 submit기능을 실행하지 않음
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Modal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Clear Conversation 버튼 클릭시 모달창이 띄워지며, 모달창에 대한 집중을 위하여 overlay를 만들어 모달창 주변 영역은 어둡게 만듦
+- 모달창 주변 영역(overlay) 클릭 시 모달창이 닫음
