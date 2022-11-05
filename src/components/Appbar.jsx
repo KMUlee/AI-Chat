@@ -26,11 +26,21 @@ const StyledH2 = styled.h2`
 
 export default function AppBar() {
   return (
-    <StyledDivMain>
-      <div>
-        <img src="../../images/logo.svg" width="36px" height="36px" />
-      </div>
-      <StyledH2>AI chat</StyledH2>
-    </StyledDivMain>
+    <div
+      style={{
+        position: "absolute",
+        height: "68px",
+        width: "100%",
+        top: "0px",
+        left: "0px",
+      }}
+    >
+      <StyledDivMain>
+        <div>
+          <img src="../../images/logo.svg" width="36px" height="36px" />
+        </div>
+        <StyledH2>AI chat</StyledH2>
+      </StyledDivMain>
+    </div>
   );
 }

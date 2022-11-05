@@ -67,13 +67,19 @@ const StyledChatDiv = styled.div`
 export default function ConversationBox({ chatData, setChatData }) {
   const [msg, setMsg] = useState("");
   const [submit, setSubmit] = useState({ type: false, msg: "" });
+  // ai 데이터를 가져오는 동안은 input의 값 수정을 막자
+  const [block, setBlock] = useState(false);
 
   const handleChange = ({ target: { value } }) => {
-    setMsg(value);
+    if (block == false) {
+      setMsg(value);
+    } else {
+      setMsg("");
+    }
   };
 
   const getAIChatData = async (msgData) => {
-    const res = await fetch(
+    await fetch(
       "https://main-chatbot-api-ainize-team.endpoint.ainize.ai/v1/bot/chat",
       {
         method: "POST",
@@ -85,7 +91,10 @@ export default function ConversationBox({ chatData, setChatData }) {
       }
     )
       .then((res) => res.json())
-      .then((data) => setChatData([...chatData, { type: "bot", msg: data }]));
+      .then((data) => {
+        setChatData([...chatData, { type: "bot", msg: data }]);
+        setBlock(false);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -93,6 +102,7 @@ export default function ConversationBox({ chatData, setChatData }) {
     if (msg.trim().length == 0) return;
     const userMsg = msg;
     setMsg("");
+    setBlock(true);
     setChatData((data) => [...data, { type: "user", msg: userMsg }]);
     setSubmit({ ...submit, type: true, msg: userMsg });
   };
@@ -128,7 +138,11 @@ export default function ConversationBox({ chatData, setChatData }) {
 
         <form onSubmit={handleSubmit}>
           <StyledInputDiv>
-            <StyledInputBox onChange={handleChange} value={msg} />
+            <StyledInputBox
+              onChange={handleChange}
+              value={msg}
+              placeholder={"Enter here to talk to the bot!!"}
+            />
             <StyledImage onClick={handleSubmit}>
               <img src="../../images/send.svg" width="24px" height="24px" />
             </StyledImage>
