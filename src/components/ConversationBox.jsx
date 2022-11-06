@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ChatBot from "./Chat_bot";
 import ChatUser from "./Chat_user";
 
+require("dotenv").config();
+
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,17 +81,14 @@ export default function ConversationBox({ chatData, setChatData }) {
   };
 
   const getAIChatData = async (msgData) => {
-    await fetch(
-      "https://main-chatbot-api-ainize-team.endpoint.ainize.ai/v1/bot/chat",
-      {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: msgData }),
-      }
-    )
+    await fetch(process.env.REACT_APP_API, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: msgData }),
+    })
       .then((res) => res.json())
       .then((data) => {
         setChatData([...chatData, { type: "bot", msg: data }]);
@@ -129,9 +128,9 @@ export default function ConversationBox({ chatData, setChatData }) {
         <StyledChatDiv ref={messageBoxRef}>
           {chatData.map((data) => {
             if (data.type == "bot") {
-              return <ChatBot msg={data.msg} />;
+              return <ChatBot key={data.msg} msg={data.msg} />;
             } else if (data.type == "user") {
-              return <ChatUser msg={data.msg} />;
+              return <ChatUser key={data.msg} msg={data.msg} />;
             }
           })}
         </StyledChatDiv>
