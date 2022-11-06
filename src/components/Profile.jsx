@@ -23,8 +23,8 @@ const ModalOverlay = styled.div`
 const ModalContent = styled.div`
   position: relative;
   background-color: #ffffff;
-  width: 280px;
-  height: 240px;
+  width: 355px;
+  height: 290px;
   border-radius: 10px;
 `;
 
@@ -52,7 +52,7 @@ const StyledNegativeButton = styled.div`
 
 const StyledPositiveButton = styled.div`
   border-radius: 10px;
-  background: #fe7474;
+  background: black;
   width: 110px;
   height: 44px;
   display: flex;
@@ -69,8 +69,7 @@ const StyledButtonText = styled.h6`
   line-height: 30px;
   margin: 0 0;
 `;
-
-export default function Modal({ visible, setVisible, setChatData }) {
+export default function Profile({ visible, setVisible }) {
   const handleOnClick = () => {
     setVisible(false);
   };
@@ -90,25 +89,25 @@ export default function Modal({ visible, setVisible, setChatData }) {
         <ModalContent>
           <div
             style={{
-              width: "245px",
-              height: "54px",
-              paddingTop: "67px",
+              textAlign: "center",
+              paddingTop: "50px",
               paddingLeft: "19px",
+              paddingRight: "19px",
             }}
           >
             <ModalH1>
-              {"Are you sure you want to clear\nthis conversation"}
+              {
+                "프론트 엔드 개발자를 희망하고 있습니다.\n TypeScript를 활용해서 NextJS를 다뤄 본 경험이 있습니다.\n\n 2학년이지만 취직시 휴학을 신청하여 인턴 후 풀타임을 생각하고 있습니다.\n 뽑아주세요!!"
+              }
             </ModalH1>
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
-                gap: "12px",
+                gap: "30px",
                 justifyContent: "center",
                 alignContent: "center",
-                position: "absolute",
-                bottom: "29px",
-                marginLeft: "5px",
+                marginTop: "50px",
               }}
             >
               <StyledNegativeButton onClick={handleOnClick}>
@@ -118,12 +117,13 @@ export default function Modal({ visible, setVisible, setChatData }) {
               </StyledNegativeButton>
               <StyledPositiveButton
                 onClick={() => {
-                  setChatData([{ type: "bot", msg: "hello~ooooo" }]);
                   setVisible(false);
+                  window.location.href =
+                    "https://github.com/KMUlee?tab=repositories";
                 }}
               >
                 <StyledButtonText style={{ color: "#FFFFFF" }}>
-                  Clear
+                  Go github
                 </StyledButtonText>
               </StyledPositiveButton>
             </div>
