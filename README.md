@@ -48,4 +48,4 @@
 
 ## 실행시 이미지
 
-<img src="../chat_bot/testImg.png">
+![Alt text](testImg.png)
