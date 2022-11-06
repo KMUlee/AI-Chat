@@ -67,11 +67,19 @@ const StyledChatDiv = styled.div`
 `;
 
 export default function ConversationBox({ chatData, setChatData }) {
+  // user의 chat data를 저장한다.
   const [msg, setMsg] = useState("");
+
+  // submit을 판별
   const [submit, setSubmit] = useState({ type: false, msg: "" });
+
   // ai 데이터를 가져오는 동안은 input의 값 수정을 막자
   const [block, setBlock] = useState(false);
 
+  // API 주소 .env 파일에서 받아온다.
+  const API = process.env.REACT_APP_API;
+
+  // input 입력값
   const handleChange = ({ target: { value } }) => {
     if (block == false) {
       setMsg(value);
@@ -80,8 +88,9 @@ export default function ConversationBox({ chatData, setChatData }) {
     }
   };
 
+  // API 데이터 받아오기
   const getAIChatData = async (msgData) => {
-    await fetch(process.env.REACT_APP_API, {
+    await fetch(API, {
       method: "POST",
       headers: {
         accept: "application/json",
@@ -96,6 +105,7 @@ export default function ConversationBox({ chatData, setChatData }) {
       });
   };
 
+  // submit시 실행
   const handleSubmit = (e) => {
     e.preventDefault();
     if (msg.trim().length == 0) return;
@@ -108,6 +118,7 @@ export default function ConversationBox({ chatData, setChatData }) {
 
   const messageBoxRef = useRef();
 
+  // 맨 밑으로 스크롤 해주는 함수
   const scrollToBottom = () => {
     if (messageBoxRef.current) {
       messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
@@ -116,6 +127,8 @@ export default function ConversationBox({ chatData, setChatData }) {
 
   useEffect(() => {
     scrollToBottom();
+
+    // submit시 API 데이터를 받아온다
     if (submit.type == true) {
       setSubmit({ ...submit, type: false, msg: "" });
       getAIChatData(submit.msg);
