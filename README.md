@@ -8,6 +8,8 @@
 
 - git clone https://github.com/KMUlee/AI-Chat.git
 - npm install
+- 프로젝트의 루트안에 .env 파일 생성
+- .env 파일 안에 REACT_APP_API = "!!!!!!!!! API 주소 !!!!!!!!!!" 작성
 - npm start
 
 ## Requirements
