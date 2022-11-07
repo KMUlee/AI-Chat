@@ -6,6 +6,7 @@
 
 ## How to run
 
+(npm 버전 8.19.2에서 정상 작동 확인함)
 - git clone https://github.com/KMUlee/AI-Chat.git
 - cd AI-Chat/
 - npm install
